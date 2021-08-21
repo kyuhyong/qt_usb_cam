@@ -23,6 +23,12 @@ private slots:
     void on_buttonCloseCamera_clicked();
     void onNewCameraImage(QImage qimage);
 
+    void on_lineEdit_ImageTitle_textChanged(const QString &arg1);
+
+    void on_button_SetCount_clicked();
+
+    void on_button_CaptureImage_clicked();
+
 private:
     Ui::MainWindow *ui;
     Camera_Node camera;

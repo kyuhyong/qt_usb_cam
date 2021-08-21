@@ -1,6 +1,7 @@
 #ifndef CAMERA_NODE_HPP
 #define CAMERA_NODE_HPP
 
+#include <QWidget>
 #include <QThread>
 #include <QTimer>
 #include <QDebug>
@@ -12,7 +13,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/videoio/videoio.hpp>
 #include <QImage>
-#include <opencv2/dnn.hpp>
+//#include <opencv2/dnn.hpp>
 
 #include "darknet.h"
 #include <fstream>
@@ -30,7 +31,9 @@ public:
     bool init();
     void startStreaming();
     void stopStreaming();
-
+    void set_capture_title(string &title);
+    void set_caputre_count(int count);
+    int  capture_image();
 private slots:
     void on_update();
 
@@ -44,6 +47,8 @@ private:
     std::string  names_file;
     std::string  cfg_file;
     std::string  weights_file;
+    std::string  capture_title;
+    int          capture_count;
     //Detector detector;
     // Remove the bounding boxes with low confidence using non-maxima suppression
     void postprocess(Mat& frame, const vector<Mat>& out);

@@ -48,8 +48,8 @@ LIBS += -L/usr/local/lib \
         -lopencv_highgui \
         -lopencv_imgcodecs \
         -lopencv_videoio \
-        -lopencv_imgproc \
-        -ldarknet
+        -lopencv_imgproc
+#        -ldarknet
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

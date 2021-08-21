@@ -9,6 +9,8 @@ Camera_Node::Camera_Node(QWidget *parent) : QWidget (parent)
     names_file = "/home/cto/workspace/video_capture/yolo/cfg/coco.names";
     cfg_file = "/home/cto/workspace/video_capture/yolo/cfg/yolov3-tiny.cfg";
     weights_file = "/home/cto/workspace/video_capture/yolo/weights/yolov3-tiny.weights";
+    capture_count = 0;
+    capture_title = "unknown";
 }
 
 bool Camera_Node::init() {
@@ -45,5 +47,21 @@ void Camera_Node::stopStreaming(){
     cout << "camera is closed" << endl;
 }
 
+void Camera_Node::set_capture_title(string &title) {
+    this->capture_title = title;
+}
 
+void Camera_Node::set_caputre_count(int count) {
+    this->capture_count = count;
+}
+
+int Camera_Node::capture_image(){
+    cv::Mat dst;
+    //int height = this->frame.rows;
+    int width = this->frame.cols;
+    cv::resize(this->frame, dst, cv::Size(width, width));
+    cv::cvtColor(dst, dst, CV_RGB2BGR);
+    cv::imwrite(this->capture_title + "_"+ to_string(capture_count) + ".jpg", dst);
+    return capture_count++;
+}
 
